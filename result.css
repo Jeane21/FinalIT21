@@ -1,0 +1,394 @@
+/* ==========================================================================
+   EduPredict - Prediction Result Screen Styles
+   Preserves identical typography, elevation, palette, and form styles
+   ========================================================================== */
+
+.result-page-content {
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+/* ==========================================================================
+   TOP: LARGE HIGHLIGHTED RESULT CARD (VISUAL FOCUS)
+   ========================================================================== */
+.result-hero-card {
+  background-color: #FFFFFF;
+  border-radius: var(--radius-xl);
+  border: 1.5px solid rgba(16, 185, 129, 0.3);
+  box-shadow: 0 10px 30px -5px rgba(16, 185, 129, 0.08), 
+              0 4px 14px -2px rgba(15, 38, 68, 0.04);
+  padding: 32px 28px 28px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.result-hero-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 36px -6px rgba(16, 185, 129, 0.12), 
+              0 6px 18px -2px rgba(15, 38, 68, 0.06);
+}
+
+/* Subtle top border accent */
+.result-hero-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #10B981 0%, #3B82F6 100%);
+}
+
+.result-hero-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 620px;
+  margin: 0 auto;
+}
+
+/* Graduation-cap Icon */
+.result-icon-bubble {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background-color: var(--color-royal-blue-light);
+  color: var(--color-royal-blue);
+  margin-bottom: 12px;
+}
+
+.result-cap-icon {
+  width: 28px;
+  height: 28px;
+  stroke: var(--color-royal-blue);
+}
+
+/* "Predicted Performance" Label */
+.result-label-tag {
+  font-family: var(--font-family-display);
+  font-size: 13.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-text-secondary);
+  margin-bottom: 8px;
+}
+
+/* Very Large "HIGH" Result (Visual Focus) */
+.result-large-value-wrapper {
+  margin-bottom: 12px;
+}
+
+.result-tier-high {
+  font-family: var(--font-family-display);
+  font-size: 52px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  color: #047857;
+  display: inline-block;
+  padding: 6px 32px;
+  background: linear-gradient(180deg, #ECFDF5 0%, #D1FAE5 100%);
+  border: 2px solid #A7F3D0;
+  border-radius: var(--radius-full);
+  box-shadow: 0 4px 16px rgba(16, 185, 129, 0.15);
+}
+
+/* Model Used Badge */
+.result-model-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 14px;
+  background-color: #F8FAFD;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+  font-family: var(--font-family-display);
+  font-size: 13px;
+  color: var(--color-navy);
+  margin-bottom: 12px;
+}
+
+.model-tree-icon {
+  width: 15px;
+  height: 15px;
+  color: var(--color-royal-blue);
+}
+
+.result-model-badge strong {
+  color: var(--color-royal-blue);
+  font-weight: 700;
+}
+
+/* Description Sentence */
+.result-description-text {
+  font-size: 14.5px;
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* ==========================================================================
+   TWO COLUMN LAYOUT: SECTION 2 (KEY FACTORS) & SECTION 3 (INPUT SUMMARY)
+   ========================================================================== */
+.result-columns-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.35fr;
+  gap: 20px;
+}
+
+/* SECTION 2: KEY FACTORS */
+.key-factors-card {
+  padding: 22px 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.horizontal-chart-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin: 12px 0 16px;
+}
+
+.h-bar-item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.h-bar-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.h-bar-label {
+  font-family: var(--font-family-display);
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--color-navy);
+}
+
+.h-bar-percentage {
+  font-family: var(--font-family-display);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--color-royal-blue);
+}
+
+/* Horizontal Bar Track & Fill */
+.h-bar-track {
+  width: 100%;
+  height: 12px;
+  background-color: #F1F5F9;
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  position: relative;
+}
+
+.h-bar-fill {
+  height: 100%;
+  width: var(--bar-width);
+  border-radius: var(--radius-full);
+  transition: width 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.h-bar-fill.fill-primary {
+  background: linear-gradient(90deg, #3B82F6 0%, var(--color-royal-blue) 100%);
+  box-shadow: 0 2px 6px rgba(29, 99, 237, 0.25);
+}
+
+.h-bar-fill.fill-secondary {
+  background: linear-gradient(90deg, #60A5FA 0%, #2563EB 100%);
+}
+
+.factors-footer-note {
+  font-size: 11.5px;
+  color: var(--color-text-muted);
+  border-top: 1px solid #F1F5F9;
+  padding-top: 10px;
+}
+
+/* ==========================================================================
+   SECTION 3: STUDENT INPUT SUMMARY GRID
+   ========================================================================== */
+.input-summary-card {
+  padding: 22px 24px;
+}
+
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-top: 6px;
+}
+
+.summary-item {
+  display: flex;
+  flex-direction: column;
+  padding: 8px 10px;
+  background-color: #F8FAFD;
+  border: 1px solid #EDF2F7;
+  border-radius: var(--radius-sm);
+  transition: background-color var(--transition-fast), border-color var(--transition-fast);
+}
+
+.summary-item:hover {
+  background-color: #FFFFFF;
+  border-color: var(--color-border-hover);
+}
+
+.summary-item.highlight-item {
+  background-color: var(--color-royal-blue-light);
+  border-color: rgba(29, 99, 237, 0.2);
+}
+
+.summary-label {
+  font-size: 11px;
+  color: var(--color-text-muted);
+  font-weight: 500;
+  margin-bottom: 2px;
+}
+
+.summary-value {
+  font-family: var(--font-family-display);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--color-navy);
+}
+
+.summary-item.highlight-item .summary-value {
+  color: var(--color-royal-blue);
+  font-weight: 800;
+}
+
+/* ==========================================================================
+   BOTTOM ACTION BAR (SAVE RESULT & NEW PREDICTION)
+   ========================================================================== */
+.result-action-bar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  margin-top: 4px;
+  margin-bottom: 12px;
+}
+
+.action-buttons-flex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  width: 100%;
+  max-width: 440px;
+}
+
+/* Primary: Save Result */
+.btn-save {
+  flex: 1;
+  height: 48px;
+  font-size: 15px;
+}
+
+.action-icon {
+  width: 18px;
+  height: 18px;
+}
+
+/* Secondary: New Prediction */
+.btn-secondary-action {
+  flex: 1;
+  height: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background-color: #FFFFFF;
+  color: var(--color-navy);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-md);
+  font-family: var(--font-family-display);
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-fast);
+}
+
+.btn-secondary-action:hover {
+  border-color: var(--color-royal-blue);
+  color: var(--color-royal-blue);
+  background-color: var(--color-royal-blue-light);
+  transform: translateY(-1px);
+}
+
+.btn-secondary-action:active {
+  transform: translateY(0);
+}
+
+/* Save Toast Notification */
+.save-toast {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  background-color: var(--color-success-bg);
+  border: 1px solid var(--color-success-border);
+  border-radius: var(--radius-full);
+  color: var(--color-success-text);
+  font-family: var(--font-family-display);
+  font-size: 13px;
+  font-weight: 600;
+  animation: fadeIn 0.3s ease;
+}
+
+.save-toast.hidden {
+  display: none;
+}
+
+.toast-check-icon {
+  width: 16px;
+  height: 16px;
+  color: #10B981;
+}
+
+/* ==========================================================================
+   Responsive Adaptations
+   ========================================================================== */
+@media (max-width: 1120px) {
+  .result-columns-grid {
+    grid-template-columns: 1fr;
+  }
+  .summary-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .summary-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .action-buttons-flex {
+    flex-direction: column;
+    max-width: 100%;
+  }
+  .btn-save, .btn-secondary-action {
+    width: 100%;
+  }
+  .result-tier-high {
+    font-size: 40px;
+    padding: 6px 24px;
+  }
+}

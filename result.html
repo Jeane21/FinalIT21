@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EduPredict - Prediction Result</title>
+  <meta name="description" content="Generated academic performance prediction result using Random Forest classification model.">
+  
+  <!-- Modern Academic Typography: Plus Jakarta Sans & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="dashboard.css">
+  <link rel="stylesheet" href="predict.css">
+  <link rel="stylesheet" href="result.css">
+</head>
+<body class="dashboard-body">
+
+  <div class="app-layout">
+    
+    <!-- ==========================================================================
+         LEFT SIDEBAR (Dark Navy - Unified with previous screens)
+         ========================================================================== -->
+    <aside class="sidebar" aria-label="Main Navigation">
+      
+      <!-- Sidebar Brand Header -->
+      <div class="sidebar-header">
+        <a href="dashboard.html" class="sidebar-brand-link">
+          <div class="sidebar-icon-bubble" aria-hidden="true">
+            <svg class="graduation-icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+              <path d="M6 12v5c3 3 9 3 12 0v-5"/>
+            </svg>
+          </div>
+          <div class="sidebar-brand-text">
+            <span class="brand-name">EduPredict</span>
+            <span class="brand-caption">ML Prediction System</span>
+          </div>
+        </a>
+      </div>
+
+      <!-- Navigation Menu -->
+      <nav class="sidebar-nav">
+        <ul class="nav-list">
+          
+          <!-- Item 1: Dashboard -->
+          <li class="nav-item">
+            <a href="dashboard.html" class="nav-link">
+              <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="3" width="7" height="7"/>
+                <rect x="14" y="3" width="7" height="7"/>
+                <rect x="14" y="14" width="7" height="7"/>
+                <rect x="3" y="14" width="7" height="7"/>
+              </svg>
+              <span>Dashboard</span>
+            </a>
+          </li>
+
+          <!-- Item 2: Predict Performance (ACTIVE) -->
+          <li class="nav-item">
+            <a href="predict.html" class="nav-link active" aria-current="page">
+              <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M2 12h5l3 7 4-14 3 7h5"/>
+              </svg>
+              <span>Predict Performance</span>
+            </a>
+          </li>
+
+          <!-- Item 3: Students -->
+          <li class="nav-item">
+            <a href="students.html" class="nav-link">
+              <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                <circle cx="9" cy="7" r="4"/>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+              </svg>
+              <span>Students</span>
+            </a>
+          </li>
+
+          <!-- Item 4: Model Comparison -->
+          <li class="nav-item">
+            <a href="model-comparison.html" class="nav-link">
+              <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="20" x2="18" y2="10"/>
+                <line x1="12" y1="20" x2="12" y2="4"/>
+                <line x1="6" y1="20" x2="6" y2="14"/>
+              </svg>
+              <span>Model Comparison</span>
+            </a>
+          </li>
+
+        </ul>
+      </nav>
+
+      <!-- Sidebar Footer -->
+      <div class="sidebar-footer">
+        <div class="sidebar-meta-card">
+          <span class="meta-label">Classification Output</span>
+          <span class="meta-value">Random Forest Model</span>
+        </div>
+      </div>
+
+    </aside>
+
+    <!-- ==========================================================================
+         MAIN CONTENT AREA
+         ========================================================================== -->
+    <div class="main-wrapper">
+      
+      <!-- TOP BAR -->
+      <header class="top-bar">
+        <div class="top-bar-left">
+          <h1 class="page-title">Prediction Result</h1>
+          <p class="page-subtitle">The system has analyzed the student data using the selected machine-learning model.</p>
+        </div>
+
+        <div class="top-bar-right">
+          <div class="capstone-mini-badge">
+            <span class="pulse-dot-sm"></span>
+            <span>Classification Generated</span>
+          </div>
+
+          <!-- User Profile Section with Dropdown Arrow -->
+          <div class="user-profile-widget" tabindex="0" role="button" aria-haspopup="true" aria-label="User profile">
+            <div class="profile-avatar">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                <circle cx="12" cy="7" r="4"/>
+              </svg>
+            </div>
+            <div class="profile-info">
+              <span class="profile-name">Admin</span>
+              <span class="profile-role">Academic Evaluator</span>
+            </div>
+            <!-- Dropdown Arrow -->
+            <svg class="dropdown-arrow-icon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+              <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+            </svg>
+          </div>
+        </div>
+      </header>
+
+      <!-- PREDICTION RESULT MAIN CONTENT -->
+      <main class="dashboard-content result-page-content">
+
+        <!-- ======================================================================
+             TOP: LARGE HIGHLIGHTED RESULT CARD (VISUAL FOCUS)
+             ====================================================================== -->
+        <section class="result-hero-card" aria-label="Prediction Outcome">
+          <div class="result-hero-inner">
+            
+            <!-- Graduation Cap / Prediction Icon -->
+            <div class="result-icon-bubble" aria-hidden="true">
+              <svg class="result-cap-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+                <path d="M6 12v5c3 3 9 3 12 0v-5"/>
+              </svg>
+            </div>
+
+            <!-- Header Label -->
+            <span class="result-label-tag">Predicted Performance</span>
+
+            <!-- Large Result: HIGH -->
+            <div class="result-large-value-wrapper">
+              <span id="predicted-tier-badge" class="result-tier-high">HIGH</span>
+            </div>
+
+            <!-- Model Used Badge -->
+            <div class="result-model-badge">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="model-tree-icon" aria-hidden="true">
+                <rect x="3" y="3" width="7" height="7"/>
+                <rect x="14" y="3" width="7" height="7"/>
+                <rect x="8.5" y="14" width="7" height="7"/>
+                <path d="M6.5 10v2h11v-2"/>
+                <path d="M12 12v2"/>
+              </svg>
+              <span>Model Used: <strong>Random Forest</strong></span>
+            </div>
+
+            <!-- Classification Context Sentence -->
+            <p class="result-description-text">
+              The student is classified under the High Performance category based on the provided factors.
+            </p>
+
+          </div>
+        </section>
+
+        <!-- ======================================================================
+             TWO COLUMN LAYOUT: SECTION 2 (KEY FACTORS) & SECTION 3 (INPUT SUMMARY)
+             ====================================================================== -->
+        <div class="result-columns-grid">
+          
+          <!-- SECTION 2 — KEY FACTORS (HORIZONTAL BAR CHART) -->
+          <section class="content-card key-factors-card" aria-labelledby="key-factors-title">
+            <div class="card-header-styled">
+              <div class="section-icon-pill blue-tint">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="18" y1="20" x2="18" y2="10"/>
+                  <line x1="12" y1="20" x2="12" y2="4"/>
+                  <line x1="6" y1="20" x2="6" y2="14"/>
+                </svg>
+              </div>
+              <div>
+                <h2 id="key-factors-title" class="form-card-title">Key Factors</h2>
+                <p class="form-card-subtitle">Important factors identified by the model</p>
+              </div>
+            </div>
+
+            <!-- Horizontal Bar Chart -->
+            <div class="horizontal-chart-container" aria-label="Feature Importance Breakdown">
+              
+              <!-- Factor 1: Attendance (25.62%) -->
+              <div class="h-bar-item">
+                <div class="h-bar-info">
+                  <span class="h-bar-label">Attendance</span>
+                  <span class="h-bar-percentage">25.62%</span>
+                </div>
+                <div class="h-bar-track">
+                  <div class="h-bar-fill fill-primary" style="--bar-width: 25.62%;" title="Attendance: 25.62% importance"></div>
+                </div>
+              </div>
+
+              <!-- Factor 2: Hours Studied (16.49%) -->
+              <div class="h-bar-item">
+                <div class="h-bar-info">
+                  <span class="h-bar-label">Hours Studied</span>
+                  <span class="h-bar-percentage">16.49%</span>
+                </div>
+                <div class="h-bar-track">
+                  <div class="h-bar-fill fill-primary" style="--bar-width: 16.49%;" title="Hours Studied: 16.49% importance"></div>
+                </div>
+              </div>
+
+              <!-- Factor 3: Previous Scores (8.10%) -->
+              <div class="h-bar-item">
+                <div class="h-bar-info">
+                  <span class="h-bar-label">Previous Scores</span>
+                  <span class="h-bar-percentage">8.10%</span>
+                </div>
+                <div class="h-bar-track">
+                  <div class="h-bar-fill fill-secondary" style="--bar-width: 8.10%;" title="Previous Scores: 8.10% importance"></div>
+                </div>
+              </div>
+
+              <!-- Factor 4: Tutoring Sessions (6.43%) -->
+              <div class="h-bar-item">
+                <div class="h-bar-info">
+                  <span class="h-bar-label">Tutoring Sessions</span>
+                  <span class="h-bar-percentage">6.43%</span>
+                </div>
+                <div class="h-bar-track">
+                  <div class="h-bar-fill fill-secondary" style="--bar-width: 6.43%;" title="Tutoring Sessions: 6.43% importance"></div>
+                </div>
+              </div>
+
+              <!-- Factor 5: Sleep Hours (5.21%) -->
+              <div class="h-bar-item">
+                <div class="h-bar-info">
+                  <span class="h-bar-label">Sleep Hours</span>
+                  <span class="h-bar-percentage">5.21%</span>
+                </div>
+                <div class="h-bar-track">
+                  <div class="h-bar-fill fill-secondary" style="--bar-width: 5.21%;" title="Sleep Hours: 5.21% importance"></div>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="factors-footer-note">
+              <span>Feature weights derived from Random Forest Gini impurity reduction.</span>
+            </div>
+          </section>
+
+          <!-- SECTION 3 — INPUT SUMMARY (CLEAN GRID) -->
+          <section class="content-card input-summary-card" aria-labelledby="summary-title">
+            <div class="card-header-styled">
+              <div class="section-icon-pill emerald-tint">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                  <polyline points="14 2 14 8 20 8"></polyline>
+                  <line x1="16" y1="13" x2="8" y2="13"></line>
+                  <line x1="16" y1="17" x2="8" y2="17"></line>
+                  <polyline points="10 9 9 9 8 9"></polyline>
+                </svg>
+              </div>
+              <div>
+                <h2 id="summary-title" class="form-card-title">Student Input Summary</h2>
+                <p class="form-card-subtitle">Attributes utilized by the model for classification</p>
+              </div>
+            </div>
+
+            <!-- Clean 20-Item Structured Summary Grid -->
+            <div class="summary-grid" id="summary-grid">
+              
+              <div class="summary-item highlight-item">
+                <span class="summary-label">Student ID</span>
+                <span class="summary-value" id="val-student-id">2024-001</span>
+              </div>
+
+              <div class="summary-item">
+                <span class="summary-label">Hours Studied</span>
+                <span class="summary-value" id="val-hours">5 hrs/wk</span>
+              </div>
+
+              <div class="summary-item">
+                <span class="summary-label">Attendance</span>
+                <span class="summary-value" id="val-attendance">90%</span>
+              </div>
+
+              <div class="summary-item">
+                <span class="summary-label">Previous Scores</span>
+                <span class="summary-value" id="val-previous-scores">78</span>
+              </div>
+
+              <div class="summary-item">
+                <span class="summary-label">Tutoring Sessions</span>
+                <span class="summary-value" id="val-tutoring">2</span>
+              </div>
+
+              <div class="summary-item">
+                <span class="summary-label">Sleep Hours</span>
+                <span class="summary-value" id="val-sleep">7 hrs/day</span>
+              </div>
+
+              <div class="summary-item">
+                <span class="summary-label">Physical Activity</span>
+                <span class="summary-value" id="val-activity">4 hrs/wk</span>
+              </div>
+
+              <div class="summary-item">
+                <span class="summary-label">Parental Involvement</span>
+                <span class="summary-value" id="val-parental">High</span>
+              </div>
+
+              <div class="summary-item">
+                <span class="summary-label">Access to Resources</span>
+                <span class="summary-value" id="val-resources">High</span>
+              </div>
+
+              <div class="summary-item">
+                <span class="summary-label">Motivation Level</span>
+                <span class="summary-value" id="val-motivation">Medium</span>
+              </div>
+
+              <div class="summary-item">
+                <span class="summary-label">Internet Access</span>
+                <span class="summary-value" id="val-internet">Yes</span>
+              </div>
+
+              <div class="summary-item">
+                <span class="summary-label">Teacher Quality</span>
+                <span class="summary-value" id="val-teacher">High</span>
+              </div>
+
+              <div class="summary-item">
+                <span class="summary-label">Family Income</span>
+                <span class="summary-value" id="val-income">Medium</span>
+              </div>
+
+              <div class="summary-item">
+                <span class="summary-label">School Type</span>
+                <span class="summary-value" id="val-school-type">Public</span>
+              </div>
+
+              <div class="summary-item">
+                <span class="summary-label">Peer Influence</span>
+                <span class="summary-value" id="val-peer">Positive</span>
+              </div>
+
+              <div class="summary-item">
+                <span class="summary-label">Learning Disabilities</span>
+                <span class="summary-value" id="val-disabilities">No</span>
+              </div>
+
+              <div class="summary-item">
+                <span class="summary-label">Parental Education</span>
+                <span class="summary-value" id="val-education">College</span>
+              </div>
+
+              <div class="summary-item">
+                <span class="summary-label">Distance from Home</span>
+                <span class="summary-value" id="val-distance">Near</span>
+              </div>
+
+              <div class="summary-item">
+                <span class="summary-label">Gender</span>
+                <span class="summary-value" id="val-gender">Female</span>
+              </div>
+
+              <div class="summary-item">
+                <span class="summary-label">Extracurricular Activities</span>
+                <span class="summary-value" id="val-extra">Yes</span>
+              </div>
+
+            </div>
+          </section>
+
+        </div>
+
+        <!-- ======================================================================
+             BOTTOM BUTTONS (PRIMARY: SAVE RESULT | SECONDARY: NEW PREDICTION)
+             ====================================================================== -->
+        <section class="result-action-bar">
+          <div class="action-buttons-flex">
+            
+            <!-- Primary Button: Save Result -->
+            <button type="button" id="save-result-btn" class="btn-primary-large btn-save">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" class="action-icon" aria-hidden="true">
+                <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
+                <polyline points="17 21 17 13 7 13 7 21"></polyline>
+                <polyline points="7 3 7 8 15 8"></polyline>
+              </svg>
+              <span>Save Result</span>
+            </button>
+
+            <!-- Secondary Button: New Prediction (Returns to predict.html) -->
+            <a href="predict.html" id="new-prediction-btn" class="btn-secondary-action">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="action-icon" aria-hidden="true">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+              </svg>
+              <span>New Prediction</span>
+            </a>
+
+          </div>
+
+          <!-- Toast Notification for Save Action -->
+          <div id="save-notification" class="save-toast hidden" role="status" aria-live="polite">
+            <svg class="toast-check-icon" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+            </svg>
+            <span>Prediction result for student successfully saved to evaluation records.</span>
+          </div>
+
+        </section>
+
+      </main>
+
+    </div>
+
+  </div>
+
+  <script src="result.js"></script>
+</body>
+</html>

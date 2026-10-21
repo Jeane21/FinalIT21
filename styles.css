@@ -1,0 +1,812 @@
+/* ==========================================================================
+   EduPredict - Modern Academic Performance Prediction System Design System
+   Color Palette: Navy Blue, Royal Blue, White, Very Light Blue
+   ========================================================================== */
+
+:root {
+  /* Brand Color Tokens */
+  --color-navy-dark: #0A192F;
+  --color-navy: #0F2644;
+  --color-navy-light: #1E3A5F;
+  
+  --color-royal-blue: #1D63ED;
+  --color-royal-blue-hover: #1550C7;
+  --color-royal-blue-active: #0F3FA8;
+  --color-royal-blue-light: #EBF2FE;
+  --color-royal-blue-tint: rgba(29, 99, 237, 0.08);
+
+  --color-bg-base: #F4F7FB;
+  --color-bg-subtle: #ECF2F9;
+  --color-card-bg: #FFFFFF;
+  
+  /* Text & Border Neutrals */
+  --color-text-primary: #0F2644;      /* Dark Navy */
+  --color-text-secondary: #52667A;    /* Slate Navy */
+  --color-text-muted: #8295A8;        /* Soft Muted */
+  --color-border: #E2E8F0;
+  --color-border-hover: #CBD5E1;
+  --color-border-focus: #1D63ED;
+
+  /* State & Feedback */
+  --color-success-bg: #ECFDF5;
+  --color-success-text: #065F46;
+  --color-success-border: #A7F3D0;
+  
+  --color-error-bg: #FEF2F2;
+  --color-error-text: #991B1B;
+  --color-error-border: #FECACA;
+
+  /* Typography */
+  --font-family-display: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-family-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  /* Radii */
+  --radius-sm: 8px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-full: 9999px;
+
+  /* Elevation & Shadows */
+  --shadow-sm: 0 1px 3px rgba(15, 38, 68, 0.05);
+  --shadow-card: 0 12px 36px -8px rgba(15, 38, 68, 0.08), 
+                 0 4px 16px -2px rgba(15, 38, 68, 0.04),
+                 0 0 0 1px rgba(226, 232, 240, 0.7);
+  --shadow-card-hover: 0 18px 44px -8px rgba(15, 38, 68, 0.12), 
+                       0 6px 20px -2px rgba(15, 38, 68, 0.06),
+                       0 0 0 1px rgba(29, 99, 237, 0.15);
+  --shadow-btn: 0 4px 14px 0 rgba(29, 99, 237, 0.28);
+  --shadow-btn-hover: 0 6px 20px 0 rgba(29, 99, 237, 0.36);
+
+  /* Transitions */
+  --transition-fast: 0.15s ease;
+  --transition-normal: 0.25s ease;
+  --transition-smooth: 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ==========================================================================
+   Base & Reset
+   ========================================================================== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  min-height: 100vh;
+  font-family: var(--font-family-body);
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--color-text-secondary);
+  background-color: var(--color-bg-base);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* ==========================================================================
+   Subtle Ambient Background (Very Light Blue & Crisp White)
+   ========================================================================== */
+.bg-decorations {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+/* Very subtle academic soft gradient glows */
+.bg-glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: 0.6;
+}
+
+.bg-glow.top-left {
+  top: -15%;
+  left: -10%;
+  width: 55vw;
+  height: 55vw;
+  background: radial-gradient(circle, rgba(219, 234, 254, 0.75) 0%, rgba(237, 245, 254, 0) 70%);
+}
+
+.bg-glow.bottom-right {
+  bottom: -20%;
+  right: -10%;
+  width: 60vw;
+  height: 60vw;
+  background: radial-gradient(circle, rgba(224, 238, 255, 0.65) 0%, rgba(244, 247, 251, 0) 70%);
+}
+
+/* Ultra-subtle academic grid */
+.grid-pattern {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    radial-gradient(circle, rgba(15, 38, 68, 0.04) 1px, transparent 1px);
+  background-size: 32px 32px;
+  mask-image: radial-gradient(ellipse at center, rgba(0,0,0,0.85) 20%, rgba(0,0,0,0) 80%);
+}
+
+/* ==========================================================================
+   Main Page Layout (Centered 16:9 friendly desktop canvas)
+   ========================================================================== */
+.page-container {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 100vh;
+  padding: 24px 24px 20px;
+}
+
+/* Capstone Academic Pill */
+.capstone-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 15px;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  backdrop-filter: blur(8px);
+  border-radius: var(--radius-full);
+  font-family: var(--font-family-display);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-navy);
+  letter-spacing: 0.02em;
+  box-shadow: 0 2px 8px rgba(15, 38, 68, 0.04);
+  margin-bottom: 8px;
+  animation: fadeInDown 0.6s ease-out;
+}
+
+.pulse-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: var(--color-royal-blue);
+  box-shadow: 0 0 0 0 rgba(29, 99, 237, 0.7);
+  animation: pulseEffect 2.2s infinite;
+}
+
+@keyframes pulseEffect {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(29, 99, 237, 0.7);
+  }
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 6px rgba(29, 99, 237, 0);
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(29, 99, 237, 0);
+  }
+}
+
+/* ==========================================================================
+   Centered Login Card
+   ========================================================================== */
+.login-card-wrapper {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 440px;
+  margin: 6px auto;
+}
+
+.login-card {
+  width: 100%;
+  background: var(--color-card-bg);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-card);
+  padding: 34px 36px 30px;
+  transition: box-shadow var(--transition-smooth), transform var(--transition-smooth);
+  animation: cardFadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.login-card:hover {
+  box-shadow: var(--shadow-card-hover);
+}
+
+/* Card Header & Branding */
+.card-header {
+  text-align: center;
+  margin-bottom: 22px;
+}
+
+/* Simple Graduation-cap Icon above name */
+.icon-bubble {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background-color: var(--color-royal-blue-light);
+  color: var(--color-royal-blue);
+  margin-bottom: 12px;
+  transition: transform var(--transition-normal), background-color var(--transition-normal);
+}
+
+.icon-bubble:hover {
+  transform: translateY(-2px) rotate(-3deg);
+  background-color: #e0ecfd;
+}
+
+.graduation-icon {
+  width: 28px;
+  height: 28px;
+  stroke: var(--color-royal-blue);
+}
+
+/* Prominent Dark Navy Blue Title */
+.brand-title {
+  font-family: var(--font-family-display);
+  font-size: 27px;
+  font-weight: 800;
+  color: var(--color-navy);
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+  margin-bottom: 5px;
+}
+
+/* Subtitle Under Name */
+.brand-subtitle {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  line-height: 1.35;
+  margin-bottom: 10px;
+}
+
+.system-meta-tags {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.tag-pill {
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--color-navy-light);
+  background: var(--color-bg-subtle);
+  padding: 3px 9px;
+  border-radius: var(--radius-full);
+}
+
+.tag-divider {
+  color: var(--color-text-muted);
+  font-size: 10px;
+}
+
+/* Status Banner / Alert */
+.status-banner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border-radius: var(--radius-md);
+  font-size: 13.5px;
+  margin-bottom: 20px;
+  transition: all var(--transition-normal);
+}
+
+.status-banner.hidden {
+  display: none;
+}
+
+.status-banner.success {
+  background-color: var(--color-success-bg);
+  color: var(--color-success-text);
+  border: 1px solid var(--color-success-border);
+}
+
+.status-banner.error {
+  background-color: var(--color-error-bg);
+  color: var(--color-error-text);
+  border: 1px solid var(--color-error-border);
+}
+
+.status-icon {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+/* ==========================================================================
+   Form Controls & Styling
+   ========================================================================== */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.label-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.form-label {
+  font-family: var(--font-family-display);
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--color-navy);
+}
+
+.forgot-link {
+  font-size: 12.5px;
+  color: var(--color-royal-blue);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color var(--transition-fast);
+}
+
+.forgot-link:hover, .forgot-link:focus-visible {
+  color: var(--color-royal-blue-hover);
+  text-decoration: underline;
+  outline: none;
+}
+
+/* Input Wrapper with Icons */
+.input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.field-icon {
+  position: absolute;
+  left: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  color: var(--color-text-muted);
+  pointer-events: none;
+  transition: color var(--transition-fast);
+}
+
+.field-icon svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* Rounded Input Fields */
+.form-input {
+  width: 100%;
+  height: 44px;
+  padding: 0 42px 0 44px;
+  font-family: var(--font-family-body);
+  font-size: 14px;
+  color: var(--color-navy);
+  background-color: #FFFFFF;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-md);
+  outline: none;
+  transition: border-color var(--transition-fast), 
+              box-shadow var(--transition-fast), 
+              background-color var(--transition-fast);
+}
+
+.form-input::placeholder {
+  color: #94A3B8;
+  font-weight: 400;
+}
+
+.form-input:hover {
+  border-color: var(--color-border-hover);
+}
+
+.form-input:focus {
+  border-color: var(--color-border-focus);
+  background-color: #FFFFFF;
+  box-shadow: 0 0 0 3.5px rgba(29, 99, 237, 0.12);
+}
+
+.input-wrapper:focus-within .field-icon {
+  color: var(--color-royal-blue);
+}
+
+/* Field Validation Error */
+.field-error {
+  font-size: 12px;
+  color: var(--color-error-text);
+  min-height: 15px;
+  line-height: 1.2;
+}
+
+.field-error:empty {
+  display: none;
+}
+
+.form-input.invalid {
+  border-color: #EF4444;
+  background-color: #FFFDFD;
+}
+
+.form-input.invalid:focus {
+  box-shadow: 0 0 0 3.5px rgba(239, 68, 68, 0.15);
+}
+
+/* Password Toggle Button */
+.password-toggle-btn {
+  position: absolute;
+  right: 12px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  color: var(--color-text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color var(--transition-fast);
+}
+
+.password-toggle-btn:hover {
+  color: var(--color-navy);
+}
+
+.password-toggle-btn:focus-visible {
+  outline: 2px solid var(--color-royal-blue);
+}
+
+.toggle-icon {
+  width: 18px;
+  height: 18px;
+}
+
+/* ==========================================================================
+   Remember Me Checkbox & Scope Indicator
+   ========================================================================== */
+.form-options {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: -4px;
+  margin-bottom: 4px;
+}
+
+.checkbox-container {
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+  cursor: pointer;
+  user-select: none;
+}
+
+.checkbox-container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.checkmark {
+  height: 18px;
+  width: 18px;
+  background-color: #FFFFFF;
+  border: 1.5px solid var(--color-border);
+  border-radius: 5px;
+  margin-right: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-fast);
+}
+
+.checkbox-container:hover input ~ .checkmark {
+  border-color: var(--color-royal-blue);
+}
+
+.checkbox-container input:checked ~ .checkmark {
+  background-color: var(--color-royal-blue);
+  border-color: var(--color-royal-blue);
+}
+
+.checkmark::after {
+  content: "";
+  display: none;
+  width: 4px;
+  height: 8px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg) translate(-0.5px, -1px);
+}
+
+.checkbox-container input:checked ~ .checkmark::after {
+  display: block;
+}
+
+.checkbox-container input:focus-visible ~ .checkmark {
+  box-shadow: 0 0 0 3px rgba(29, 99, 237, 0.2);
+}
+
+.checkbox-label {
+  font-size: 13.5px;
+  color: var(--color-text-secondary);
+}
+
+.model-scope-hint {
+  font-size: 12px;
+  color: var(--color-text-muted);
+  background: var(--color-bg-subtle);
+  padding: 3px 8px;
+  border-radius: var(--radius-sm);
+  font-weight: 500;
+}
+
+/* ==========================================================================
+   Strong Blue Login Button
+   ========================================================================== */
+.btn-primary {
+  width: 100%;
+  height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background-color: var(--color-royal-blue);
+  color: #FFFFFF;
+  border: none;
+  border-radius: var(--radius-md);
+  font-family: var(--font-family-display);
+  font-size: 14.5px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  box-shadow: var(--shadow-btn);
+  transition: background-color var(--transition-fast), 
+              transform var(--transition-fast), 
+              box-shadow var(--transition-fast);
+  margin-top: 2px;
+}
+
+.btn-primary:hover {
+  background-color: var(--color-royal-blue-hover);
+  box-shadow: var(--shadow-btn-hover);
+  transform: translateY(-1px);
+}
+
+.btn-primary:active {
+  background-color: var(--color-royal-blue-active);
+  transform: translateY(0);
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-primary:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3.5px rgba(29, 99, 237, 0.35);
+}
+
+.arrow-icon {
+  width: 17px;
+  height: 17px;
+  transition: transform var(--transition-fast);
+}
+
+.btn-primary:hover .arrow-icon {
+  transform: translateX(3px);
+}
+
+/* Button Loading Spinner */
+.btn-spinner.hidden {
+  display: none;
+}
+
+.spinner-svg {
+  width: 20px;
+  height: 20px;
+  animation: spin 0.8s linear infinite;
+}
+
+.spinner-circle {
+  stroke: #FFFFFF;
+  stroke-dasharray: 45;
+  stroke-dashoffset: 15;
+  stroke-linecap: round;
+}
+
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.btn-primary:disabled {
+  opacity: 0.8;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+/* ==========================================================================
+   Capstone Prototype Quick Test Credentials
+   ========================================================================== */
+.prototype-credentials-box {
+  margin-top: 6px;
+  padding: 10px 12px;
+  background-color: #F8FAFD;
+  border: 1px dashed #CBD5E1;
+  border-radius: var(--radius-md);
+  transition: border-color var(--transition-fast);
+}
+
+.prototype-credentials-box:hover {
+  border-color: #94A3B8;
+}
+
+.cred-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-family-display);
+  font-size: 11.5px;
+  font-weight: 700;
+  color: var(--color-navy);
+  margin-bottom: 2px;
+}
+
+.info-icon {
+  width: 13px;
+  height: 13px;
+  color: var(--color-royal-blue);
+}
+
+.cred-desc {
+  font-size: 11px;
+  color: var(--color-text-muted);
+  margin-bottom: 6px;
+}
+
+.cred-pills {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.cred-pill {
+  flex: 1;
+  min-width: 130px;
+  padding: 5px 8px;
+  background: #FFFFFF;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-family-body);
+  font-size: 11px;
+  color: var(--color-text-secondary);
+  text-align: left;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.cred-pill strong {
+  color: var(--color-navy);
+  font-weight: 600;
+}
+
+.cred-pill:hover {
+  background-color: var(--color-royal-blue-light);
+  border-color: var(--color-royal-blue);
+  color: var(--color-royal-blue-hover);
+}
+
+/* ==========================================================================
+   Page Footer
+   ========================================================================== */
+.page-footer {
+  text-align: center;
+  padding-top: 10px;
+  z-index: 1;
+}
+
+.footer-primary-text {
+  font-family: var(--font-family-display);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-navy);
+  letter-spacing: 0.01em;
+  margin-bottom: 4px;
+}
+
+.footer-secondary-text {
+  font-size: 11.5px;
+  color: var(--color-text-muted);
+}
+
+/* ==========================================================================
+   Entry Animations & Keyframes
+   ========================================================================== */
+@keyframes cardFadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ==========================================================================
+   Responsive Viewport Support
+   ========================================================================== */
+@media (max-height: 720px) {
+  .page-container {
+    padding: 16px 20px;
+  }
+  .card-header {
+    margin-bottom: 20px;
+  }
+  .icon-bubble {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 10px;
+  }
+  .graduation-icon {
+    width: 24px;
+    height: 24px;
+  }
+  .brand-title {
+    font-size: 25px;
+  }
+  .login-card {
+    padding: 30px 32px 26px;
+  }
+  .login-form {
+    gap: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .login-card {
+    padding: 28px 22px 24px;
+    border-radius: var(--radius-lg);
+  }
+  .brand-title {
+    font-size: 24px;
+  }
+  .brand-subtitle {
+    font-size: 13.5px;
+  }
+  .cred-pills {
+    flex-direction: column;
+  }
+}

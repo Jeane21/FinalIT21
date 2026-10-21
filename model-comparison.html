@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EduPredict - Model Comparison</title>
+  <meta name="description" content="Compare Decision Tree and Random Forest classification results from the EduPredict academic performance study.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="dashboard.css">
+  <link rel="stylesheet" href="model-comparison.css">
+</head>
+<body class="dashboard-body">
+  <div class="app-layout">
+    <aside class="sidebar" aria-label="Main navigation">
+      <div class="sidebar-header">
+        <a href="dashboard.html" class="sidebar-brand-link">
+          <div class="sidebar-icon-bubble" aria-hidden="true">
+            <svg class="graduation-icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+          </div>
+          <div class="sidebar-brand-text"><span class="brand-name">EduPredict</span><span class="brand-caption">ML Prediction System</span></div>
+        </a>
+      </div>
+      <nav class="sidebar-nav">
+        <ul class="nav-list">
+          <li class="nav-item"><a href="dashboard.html" class="nav-link"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg><span>Dashboard</span></a></li>
+          <li class="nav-item"><a href="predict.html" class="nav-link"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h5l3 7 4-14 3 7h5"/></svg><span>Predict Performance</span></a></li>
+          <li class="nav-item"><a href="students.html" class="nav-link"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg><span>Students</span></a></li>
+          <li class="nav-item"><a href="model-comparison.html" class="nav-link active" aria-current="page"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg><span>Model Comparison</span></a></li>
+        </ul>
+      </nav>
+      <div class="sidebar-footer">
+        <div class="sidebar-meta-card"><span class="meta-label">Classification Models</span><span class="meta-value">Decision Tree &bull; Random Forest</span></div>
+      </div>
+    </aside>
+
+    <div class="main-wrapper">
+      <header class="top-bar">
+        <div class="top-bar-left"><h1 class="page-title">Model Comparison</h1><p class="page-subtitle">Compare the predictive performance of the Decision Tree and Random Forest models.</p></div>
+        <div class="top-bar-right"><div class="capstone-mini-badge"><span class="pulse-dot-sm"></span><span>Classification Models</span></div><div class="user-profile-widget" tabindex="0" role="button" aria-haspopup="true" aria-label="User profile"><div class="profile-avatar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><div class="profile-info"><span class="profile-name">Admin</span><span class="profile-role">Academic Evaluator</span></div><svg class="dropdown-arrow-icon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" style="width:16px;height:16px;color:#8295A8"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/></svg></div></div>
+      </header>
+
+      <main class="dashboard-content comparison-content">
+        <div class="research-note"><span class="note-icon" aria-hidden="true">i</span><p>Both models were trained and evaluated using the same preprocessed dataset and testing set to provide a direct comparison.</p></div>
+
+        <section class="comparison-grid config-grid" aria-label="Model configurations">
+          <article class="content-card config-card">
+            <div class="card-heading"><span class="model-mark tree-mark" aria-hidden="true">DT</span><div><h2>Decision Tree</h2><p>Baseline model</p></div></div>
+            <dl class="config-list"><div><dt>Algorithm</dt><dd>Decision Tree Classifier</dd></div><div><dt>Criterion</dt><dd>Gini</dd></div><div><dt>Random State</dt><dd>42</dd></div><div><dt>Role</dt><dd><span class="soft-tag">Baseline model</span></dd></div></dl>
+          </article>
+          <article class="content-card config-card">
+            <div class="card-heading"><span class="model-mark forest-mark" aria-hidden="true">RF</span><div><h2>Random Forest</h2><p>Ensemble model</p></div></div>
+            <dl class="config-list"><div><dt>Algorithm</dt><dd>Random Forest Classifier</dd></div><div><dt>Number of Trees</dt><dd>200</dd></div><div><dt>Random State</dt><dd>42</dd></div><div><dt>Processing Jobs</dt><dd>All Available Processors</dd></div></dl>
+          </article>
+        </section>
+
+        <section class="comparison-grid dataset-grid" aria-label="Dataset and target distribution">
+          <article class="content-card dataset-card">
+            <div class="section-title-row"><div><h2 class="section-heading">Dataset Information</h2><p class="section-subtext">Shared evaluation dataset</p></div><span class="section-icon" aria-hidden="true">▦</span></div>
+            <div class="dataset-stats">
+              <div><span>Total Records</span><strong>6,607</strong></div><div><span>Predictor Variables</span><strong>19</strong></div>
+              <div><span>Training Records</span><strong>5,285</strong></div><div><span>Testing Records</span><strong>1,322</strong></div>
+              <div><span>Split</span><strong>80% / 20%</strong></div><div><span>Split Type</span><strong>Stratified</strong></div>
+              <div><span>Random State</span><strong>42</strong></div><div><span>Target Classes</span><strong>Low · Medium · High</strong></div>
+            </div>
+            <div class="dataset-footnote">Train/test split: 80% Training / 20% Testing</div>
+          </article>
+          <article class="content-card distribution-card">
+            <div class="section-title-row"><div><h2 class="section-heading">Target Class Distribution</h2><p class="section-subtext">Counts in the full dataset</p></div><span class="section-icon" aria-hidden="true">◉</span></div>
+            <div class="distribution-list">
+              <div class="distribution-row"><div class="distribution-label"><span class="distribution-dot low-dot"></span><span>Low</span><strong>1,452</strong><em>21.98%</em></div><div class="distribution-track"><span class="distribution-fill low-fill" style="width:21.98%"></span></div></div>
+              <div class="distribution-row"><div class="distribution-label"><span class="distribution-dot medium-dot"></span><span>Medium</span><strong>3,530</strong><em>53.43%</em></div><div class="distribution-track"><span class="distribution-fill medium-fill" style="width:53.43%"></span></div></div>
+              <div class="distribution-row"><div class="distribution-label"><span class="distribution-dot high-dot"></span><span>High</span><strong>1,625</strong><em>24.60%</em></div><div class="distribution-track"><span class="distribution-fill high-fill" style="width:24.60%"></span></div></div>
+            </div>
+            <p class="target-rule"><strong>Target from Exam_Score:</strong> 55–64 = Low; 65–69 = Medium; 70–101 = High.</p>
+            <p class="classification-note">These performance ranges are study-defined classification ranges and are not official school grading classifications.</p>
+          </article>
+        </section>
+
+        <section class="content-card metrics-card" aria-labelledby="metrics-heading">
+          <div class="section-title-row"><div><h2 class="section-heading" id="metrics-heading">Main Comparison</h2><p class="section-subtext">Weighted evaluation metrics on the testing set</p></div><span class="data-caption">Higher values are highlighted</span></div>
+          <div class="responsive-table-wrap"><table class="comparison-table"><thead><tr><th scope="col">Metric</th><th scope="col">Decision Tree</th><th scope="col">Random Forest</th></tr></thead><tbody>
+            <tr><th scope="row">Accuracy</th><td>72.39%</td><td class="best-value">82.22% <span class="best-indicator">Higher</span></td></tr>
+            <tr><th scope="row">Weighted Precision</th><td>72.45%</td><td class="best-value">85.02% <span class="best-indicator">Higher</span></td></tr>
+            <tr><th scope="row">Weighted Recall</th><td>72.39%</td><td class="best-value">82.22% <span class="best-indicator">Higher</span></td></tr>
+            <tr><th scope="row">Weighted F1-Score</th><td>72.39%</td><td class="best-value">81.56% <span class="best-indicator">Higher</span></td></tr>
+          </tbody></table></div>
+        </section>
+
+        <section class="comparison-grid chart-summary-grid" aria-label="Performance chart and model summary">
+          <article class="content-card chart-card">
+            <div class="section-title-row"><div><h2 class="section-heading">Model Performance</h2><p class="section-subtext">Testing-set evaluation metrics</p></div><div class="chart-legend"><span><i class="legend-swatch tree-swatch"></i>Decision Tree</span><span><i class="legend-swatch forest-swatch"></i>Random Forest</span></div></div>
+            <div class="chart-scroll"><svg id="performance-chart" class="performance-chart" viewBox="0 0 820 350" role="img" aria-labelledby="performance-chart-title performance-chart-desc"><title id="performance-chart-title">Decision Tree and Random Forest performance comparison</title><desc id="performance-chart-desc">Grouped bars show accuracy, weighted precision, weighted recall, and weighted F1-score in percent.</desc></svg></div>
+            <div class="axis-caption">Evaluation Metrics</div>
+          </article>
+          <article class="content-card winner-card">
+            <div class="winner-eyebrow"><span class="winner-check" aria-hidden="true">✓</span> Best Performing Model</div>
+            <h2>Random Forest</h2>
+            <p>Random Forest achieved higher accuracy, weighted precision, weighted recall, and weighted F1-score than the Decision Tree on the testing dataset.</p>
+            <div class="improvement-list"><div><span>Accuracy Improvement</span><strong>+9.83 <small>percentage points</small></strong></div><div><span>Weighted F1 Improvement</span><strong>+9.17 <small>percentage points</small></strong></div><div><span>Weighted Precision Improvement</span><strong>+12.57 <small>percentage points</small></strong></div></div>
+          </article>
+        </section>
+
+        <section class="content-card matrices-card" aria-labelledby="matrices-heading">
+          <div class="section-title-row"><div><h2 class="section-heading" id="matrices-heading">Confusion Matrices</h2><p class="section-subtext">Actual vs Predicted · testing set</p></div><span class="data-caption">Darker cells indicate larger counts</span></div>
+          <div class="comparison-grid matrix-grid" id="confusion-matrices"></div>
+        </section>
+
+        <section class="content-card class-report-card" aria-labelledby="class-report-heading">
+          <div class="section-title-row"><div><h2 class="section-heading" id="class-report-heading">Classification Performance</h2><p class="section-subtext">Per-class precision, recall, F1-score, and support</p></div></div>
+          <div class="comparison-grid report-grid">
+            <article class="report-panel"><h3><span class="model-mark tree-mark" aria-hidden="true">DT</span> Decision Tree</h3><div class="responsive-table-wrap"><table class="report-table"><thead><tr><th>Class</th><th>Precision</th><th>Recall</th><th>F1-Score</th><th>Support</th></tr></thead><tbody><tr><th>Low</th><td>70.61%</td><td>67.70%</td><td>69.12%</td><td>291</td></tr><tr><th>Medium</th><td>74.93%</td><td>74.08%</td><td>74.50%</td><td>706</td></tr><tr><th>High</th><td>68.70%</td><td>72.92%</td><td>70.75%</td><td>325</td></tr></tbody></table></div></article>
+            <article class="report-panel rf-report"><h3><span class="model-mark forest-mark" aria-hidden="true">RF</span> Random Forest</h3><div class="responsive-table-wrap"><table class="report-table"><thead><tr><th>Class</th><th>Precision</th><th>Recall</th><th>F1-Score</th><th>Support</th></tr></thead><tbody><tr><th>Low</th><td>94.02%</td><td>59.45%</td><td>72.84%</td><td>291</td></tr><tr><th>Medium</th><td>76.16%</td><td>97.31%</td><td>85.45%</td><td>706</td></tr><tr><th>High</th><td>96.19%</td><td>69.85%</td><td>80.93%</td><td>325</td></tr></tbody></table></div><p class="interpretation-note">Random Forest showed particularly strong performance in identifying the Medium category, with 97.31% recall and an 85.45% F1-score.</p></article>
+          </div>
+        </section>
+
+        <section class="content-card importance-card" aria-labelledby="importance-heading">
+          <div class="section-title-row"><div><h2 class="section-heading" id="importance-heading">Random Forest Feature Importance</h2><p class="section-subtext">Top 10 features ranked by model importance</p></div><span class="data-caption">Relative importance</span></div>
+          <div id="feature-importance-list" class="feature-importance-list"></div>
+          <p class="classification-note importance-note">Feature importance indicates how useful a variable was to the trained Random Forest model. It does not establish that the variable directly causes a particular level of academic performance.</p>
+        </section>
+
+        <section class="content-card interpretation-card" aria-labelledby="interpretation-heading">
+          <div class="section-title-row"><div><h2 class="section-heading" id="interpretation-heading">Model Interpretation</h2><p class="section-subtext">Research-based comparison summary</p></div></div>
+          <div class="comparison-grid interpretation-grid"><article><h3><span class="model-mark tree-mark" aria-hidden="true">DT</span> Decision Tree</h3><p>The Decision Tree provides an interpretable baseline classification model but produced lower predictive performance on the testing dataset.</p></article><article><h3><span class="model-mark forest-mark" aria-hidden="true">RF</span> Random Forest</h3><p>The Random Forest produced stronger overall classification results by combining multiple decision trees and achieved higher accuracy and weighted evaluation scores.</p></article></div>
+          <p class="final-selection"><span aria-hidden="true">✓</span> Based on the evaluation results, Random Forest is the selected active model for the EduPredict prediction interface.</p>
+        </section>
+        <footer class="page-footnote">Research results are presented as reported for the study’s test set.</footer>
+      </main>
+    </div>
+  </div>
+  <script src="model-comparison.js"></script>
+</body>
+</html>
